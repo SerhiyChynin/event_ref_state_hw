@@ -9,11 +9,18 @@ function App() {
   let outValue = React.createRef();
   const [value, setValue] = useState('');
   
-  let colorValue = React.createRef([])
-  console.log(colorValue);
-  let outColorValue = React.createRef()
-  const [outColor, setOutColor] = useState('');
+  let out7 = React.createRef()
+  const [out7_2, setOut7_2] = useState([]);
 
+  let i_8 = React.createRef();
+  const [out_8, setOut_8] = useState([]);
+
+  let range = React.createRef();
+  const [out_9, setOut_9] = useState();
+
+  let i_10 = React.createRef();
+
+  
   function task1() {
     console.log('task2')
   }
@@ -39,39 +46,42 @@ function App() {
     setValue(selectValue.current.value)
 
   }
-  function task7() {
-    
-    function getRandomInt(min, max) {
-      min = Math.ceil(min);
-      max = Math.floor(max);
+
+      function getRandomInt(min=0, max=255) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
     }
-
-    let randomRgb = () => [
-      getRandomInt(0, 255),
-      getRandomInt(0, 255),
-      getRandomInt(0, 255)
-    ]
-    const rgb = randomRgb();
+  function task7() {
+    let color = `rgb(${getRandomInt()}, ${getRandomInt()}, ${getRandomInt()})`;
+    // out7.current.style.backgroundColor = color;
+    // out7.current.textContent = color;
+    setOut7_2(out7.current.style.backgroundColor = color)  // добавил через стейт. Спасибо за логику!
     
-
-    document.querySelector('.block-7').style.backgroundColor = 'rgb(' + rgb.map(item => item );
-    // rgb = colorValue;
-    // outColorValue.current.innerHTML = colorValue.current.value;
-    // console.log(colorValue.current.value)
-    // outColorValue.current.innerHTML = colorValue.current.value;
-    // setOutColor(colorValue.current.value);
-
+    // let randomRgb = () => [
+    //   getRandomInt(0, 255),
+    //   getRandomInt(0, 255),
+    //   getRandomInt(0, 255)
+    // ]
+    // const rgb = randomRgb();
+    
+    // document.querySelector('.block-7').style.backgroundColor = 'rgb(' + rgb.map(item => item );
   }
   
   function task8() {
-
+    console.log(out_8)
+    let n = i_8.current.value;
+    let res = out_8;
+    setOut_8(res)
+    if (isNaN(+n)) return setOut_8(0);
+    return setOut_8(1);
   }
   function task9() {
+    setOut_9(range.current.value);
 
   }
   let ar10 = [5, 6, 7];
   function task10() {
+    ar10.push(i_10.current.value);
+    console.log(ar10);
 
   }
 
@@ -111,23 +121,23 @@ function App() {
       </section>
       <section>
         <h2>Task 7</h2>
-        <div className="block-7" ref={outColorValue}>{outColor}</div>
-        <button className="task-7" onClick={task7} ref={colorValue}>Color</button>
+        <div className="block-7" ref={out7}>{out7_2}</div>
+        <button className="task-7" onClick={task7}>Color</button>
       </section>
       <section>
         <h2>Task 8</h2>
-        <input type="text" className="task-8"></input>
-        <div className="out-8" ></div>
+        <input type="text" className="task-8" onKeyPress={task8} ref={i_8}></input>
+        <div className="out-8" >{out_8}</div>
       </section>
       <section>
         <h2>Task 9</h2>
-        <input type="range" className="task-9"></input>
-        <div className="out-9"></div>
+        <input type="range" className="task-9" onInput={task9} ref={range}></input>
+        <div className="out-9">{out_9}</div>
       </section>
       <section>
         <h2>Task 10</h2>
-        <input type="number" className="i-10"></input>
-        <button className="task-10">Push</button>
+        <input type="number" className="i-10"  ref={i_10}></input>
+        <button className="task-10" onClick={task10}>Push</button>
       </section>
     </>
   );
