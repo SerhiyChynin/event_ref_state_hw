@@ -9,7 +9,8 @@ function App() {
   let outValue = React.createRef();
   const [value, setValue] = useState('');
   
-  let colorValue = React.createRef()
+  let colorValue = React.createRef([])
+  console.log(colorValue);
   let outColorValue = React.createRef()
   const [outColor, setOutColor] = useState('');
 
@@ -39,24 +40,27 @@ function App() {
 
   }
   function task7() {
-    let randomRgb = () => [
-      getRandomInt(0, 255),
-      getRandomInt(0, 255),
-      getRandomInt(0, 255)
-    ]
-
-    const rgb = randomRgb()
-    console.log(rgb)
-
+    
     function getRandomInt(min, max) {
       min = Math.ceil(min);
       max = Math.floor(max);
       return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    console.log(colorValue.current.value)
-    outColorValue.current.innerHTML = colorValue.current.value;
-    setOutColor(colorValue.current.value);
+    let randomRgb = () => [
+      getRandomInt(0, 255),
+      getRandomInt(0, 255),
+      getRandomInt(0, 255)
+    ]
+    const rgb = randomRgb();
+    
+
+    document.querySelector('.block-7').style.backgroundColor = 'rgb(' + rgb.map(item => item );
+    // rgb = colorValue;
+    // outColorValue.current.innerHTML = colorValue.current.value;
+    // console.log(colorValue.current.value)
+    // outColorValue.current.innerHTML = colorValue.current.value;
+    // setOutColor(colorValue.current.value);
 
   }
   
