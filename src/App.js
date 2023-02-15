@@ -16,7 +16,7 @@ function App() {
   const [out_8, setOut_8] = useState([]);
 
   let range = React.createRef();
-  const [out_9, setOut_9] = useState();
+  const [out_9, setOut_9] = useState([]);
 
   let i_10 = React.createRef();
 
@@ -34,14 +34,13 @@ function App() {
     console.log(count4 = event.target.value);
   }
   function task5(event) { 
-    console.log(event)
     if (event.target.checked) 
        return document.querySelector('.out-5').innerHTML = event.target.value;
     
     else
        document.querySelector('.out-5').innerHTML = 0;
   }
-  function task6(event) {
+  function task6() {
     outValue.current.innerHTML = selectValue.current.value;
     setValue(selectValue.current.value)
 
@@ -66,13 +65,11 @@ function App() {
     // document.querySelector('.block-7').style.backgroundColor = 'rgb(' + rgb.map(item => item );
   }
   
-  function task8() {
+  function task8(event) {
     console.log(out_8)
-    let n = i_8.current.value;
-    let res = out_8;
-    setOut_8(res)
-    if (isNaN(+n)) return setOut_8(0);
-    return setOut_8(1);
+    let n = event.key;
+    if (isNaN(+n)) return setOut_8(0);   // Выводит один раз 0 и 1, 0 перезаписует 1, единица повторно не выводиться. Не знаю как реализовать перезапись
+    return setOut_8(1);                 // Так же выводит на один символ позже, в чем может быть причина? В count та же история.
   }
   function task9() {
     setOut_9(range.current.value);
@@ -126,7 +123,7 @@ function App() {
       </section>
       <section>
         <h2>Task 8</h2>
-        <input type="text" className="task-8" onKeyPress={task8} ref={i_8}></input>
+        <input type="text" className="task-8" onKeyPress={task8} ></input>
         <div className="out-8" >{out_8}</div>
       </section>
       <section>
